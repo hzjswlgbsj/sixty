@@ -29,7 +29,7 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
      *
      * @var string
      */
-    const VERSION = '5.6.0';
+    const VERSION = '5.6.3';
 
     /**
      * The base path for the Laravel installation.
@@ -93,13 +93,6 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
      * @var array
      */
     protected $deferredServices = [];
-
-    /**
-     * A custom callback used to configure Monolog.
-     *
-     * @var callable|null
-     */
-    protected $monologConfigurator;
 
     /**
      * The custom database path defined by the developer.
@@ -1042,39 +1035,6 @@ class Application extends Container implements ApplicationContract, HttpKernelIn
     public function provideFacades($namespace)
     {
         AliasLoader::setFacadeNamespace($namespace);
-    }
-
-    /**
-     * Define a callback to be used to configure Monolog.
-     *
-     * @param  callable  $callback
-     * @return $this
-     */
-    public function configureMonologUsing(callable $callback)
-    {
-        $this->monologConfigurator = $callback;
-
-        return $this;
-    }
-
-    /**
-     * Determine if the application has a custom Monolog configurator.
-     *
-     * @return bool
-     */
-    public function hasMonologConfigurator()
-    {
-        return ! is_null($this->monologConfigurator);
-    }
-
-    /**
-     * Get the custom Monolog configurator for the application.
-     *
-     * @return callable
-     */
-    public function getMonologConfigurator()
-    {
-        return $this->monologConfigurator;
     }
 
     /**
