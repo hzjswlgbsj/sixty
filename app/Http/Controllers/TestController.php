@@ -5,12 +5,14 @@
  * Date: 2018/2/28
  * Time: 下午1:51
  */
-namespace app\Http\Controller;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class TestController extends Controller {
     public function test() {
-        return view('test');
+        $tags = DB::select('select * from hi_tags');
+        dd($tags);
     }
 }
