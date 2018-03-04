@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class TestController extends Controller {
     public function test() {
-        $tags = DB::select('select * from hi_tags');
+        $tags = DB::table('tags')->get();
         dd($tags);
     }
 }
